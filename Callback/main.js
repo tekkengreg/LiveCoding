@@ -5,8 +5,9 @@
 
 ***/
 
-function print(message,cb){
-  cb(message);
+function print(message,cb)
+{
+cb(message);
 }
 
 sort("Hello World",function(message){

@@ -51,6 +51,15 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/map', mapRouter);
 app.use('/blog',blogRouter);
+app.get('/api/pandora/upcoming',(req,res)=>{
+  http.get('https://api.pandascore.co/ow/matches/upcoming.json?token=mJ8REQ0o29P34viQidrlA7hIs6vKs94-orJbzoWY-2ZMMY9TAoo')
+    .then(res => {
+      return res.json()
+    })
+    .then(result => res.json(result))
+    .catch(function(error) {
+console.log(error)});
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
