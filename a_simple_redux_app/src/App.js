@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+
+import { incrementCounter } from "./actions/index"
+import { bindActionCreators } from 'redux';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       counter: 1,
     }
   }
-  handleClick = ()=>{
-    // this.setState({
-    //   counter: this.state.counter+1
-    // })
-    const action = {
-      type: "INCREMENT",
-      increment : 2
-    }
-    this.props.dispatch(action)
-  }
+
   render() {
     return (
       <div className="App">
@@ -29,18 +23,28 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          {this.props.counter}
+          Counter plus :  {this.props.counter}
         </p>
-        <button onClick={()=>(this.handleClick())}>increment</button>
+        <p className="App-intro">
+          Counter moins : {this.props.counterdecrease}
+        </p>
+        <button onClick={() => (this.props.toto(2, Math.random() > 0.5))}>increment</button>
       </div>
     );
   }
 };
 
-function mapStateToProps(state){
-  return({
-    counter: state.counter
+function mapStateToProps(state) {
+  return ({
+    counter: state.counter,
+    counterdecrease: state.counterdecrease,
   })
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    toto: incrementCounter
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
