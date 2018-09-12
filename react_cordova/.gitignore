@@ -4,6 +4,7 @@
 /node_modules
 /hybridapp/node_modules
 /hybridapp/platforms/android
+/hybridapp/platforms/plugins
 
 # testing
 /coverage
